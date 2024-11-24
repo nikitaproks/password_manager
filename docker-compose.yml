@@ -16,7 +16,7 @@ services:
         environment:
             - DOMAIN=${DOMAIN}
         volumes:
-            - ./Caddyfile:/etc/caddy/Caddyfile:ro
+            - ./Caddyfile:/etc/caddy/Caddyfile
             - ${CADDY_DATA_PERSISTENT_PATH}:/data
             - ${CADDY_CONFIG_PERSISTENT_PATH}:/config
         ports:
