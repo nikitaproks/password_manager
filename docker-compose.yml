@@ -3,8 +3,8 @@ services:
         image: vaultwarden/server:latest
         container_name: vaultwarden
         environment:
-            ADMIN_TOKEN: ${ADMIN_TOKEN}
-            SIGNUPS_ALLOWED: "false"
+            - ADMIN_TOKEN=${ADMIN_TOKEN}
+            - SIGNUPS_ALLOWED="false"
         volumes:
             - ${VAULT_PERSISTENT_PATH}:/data
         restart: always
