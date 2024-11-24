@@ -1,0 +1,34 @@
+services:
+    vaultwarden:
+        image: vaultwarden/server:latest
+        container_name: vaultwarden
+        environment:
+            ADMIN_TOKEN: ${ADMIN_TOKEN}
+            SIGNUPS_ALLOWED: "false"
+        volumes:
+            - ${VAULT_PERSISTENT_PATH}:/data
+        restart: always
+        networks:
+            - vault_net
+    caddy:
+        image: caddy:latest
+        container_name: caddy
+        environment:
+            - DOMAIN=${DOMAIN}
+        volumes:
+            - ./Caddyfile:/etc/caddy/Caddyfile:ro
+            - ${CADDY_DATA_PERSISTENT_PATH}:/data
+            - ${CADDY_CONFIG_PERSISTENT_PATH}:/config
+        ports:
+            - 80:80
+            - 443:443
+        restart: always
+        networks:
+            - vault_net
+
+networks:
+  vault_net:
+
+volumes:
+  caddy_data:
+  caddy_config:
