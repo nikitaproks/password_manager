@@ -4,7 +4,7 @@ services:
         container_name: vaultwarden
         environment:
             - ADMIN_TOKEN=${ADMIN_TOKEN}
-            - SIGNUPS_ALLOWED="false"
+            - SIGNUPS_ALLOWED=false
         volumes:
             - ${VAULT_PERSISTENT_PATH}:/data
         restart: always
